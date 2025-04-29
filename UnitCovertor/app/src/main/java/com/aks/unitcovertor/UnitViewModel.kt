@@ -1,6 +1,7 @@
 package com.aks.unitcovertor
 
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 
@@ -15,7 +16,7 @@ class UnitViewModel : ViewModel() {
     private val _conversionFactor = mutableStateOf(1.00)
     private val _oConversionFactor = mutableStateOf(1.00)
 
-    var inputValue: MutableState<String> = _inputValue
+    var inputValue: State<String> = _inputValue
     val outputValue: MutableState<String> = _outputValue
     var inputUnit: MutableState<String> = _inputUnit
     var outputUnit: MutableState<String> = _outputUnit

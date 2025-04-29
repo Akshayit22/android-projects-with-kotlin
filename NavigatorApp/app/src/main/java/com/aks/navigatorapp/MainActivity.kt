@@ -20,8 +20,8 @@ class MainActivity : ComponentActivity() {
             NavigatorAppTheme {
                 Scaffold {
                     //MyApp()
-                    //Nav()
-                    NestedNav()
+                    Nav()
+                    //NestedNav()
                     //TsNavigation()
                 }
             }
