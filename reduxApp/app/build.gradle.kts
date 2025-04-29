@@ -56,4 +56,12 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation("org.reduxkotlin:redux-kotlin-threadsafe-jvm:0.5.5")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+    dependencies {
+        implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1") // Use the latest stable version
+    }
 }
