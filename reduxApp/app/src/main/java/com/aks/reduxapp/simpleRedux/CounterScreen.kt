@@ -9,30 +9,47 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import org.reduxkotlin.applyMiddleware
+import org.reduxkotlin.createThreadSafeStore
+
+object StoreHolder {
+    val store = createThreadSafeStore(
+        reducer = counterReducer,
+        preloadedState = CounterState(),
+        enhancer = applyMiddleware(loggerMiddleware)
+    )
+}
 
 @Composable
-fun CounterScreen(viewModel: CounterViewModel = viewModel()) {
-    val state by viewModel.state
+fun CounterScreen() {
+    val store = StoreHolder.store
+    val (state, setState) = remember { mutableStateOf(store.state) }
+
+    LaunchedEffect(Unit) {
+        store.subscribe {
+            setState(store.state)
+        }
+    }
 
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "Count: ${state.counterState.count}", fontSize = 32.sp)
-
+        Text("Count: ${state.count}", fontSize = 30.sp)
         Row {
-            Button(onClick = { viewModel.dispatch(AppAction.Counter(CounterAction.Increment)) }) {
+            Button(onClick = { store.dispatch(CounterAction.Increment) }) {
                 Text("Increment")
             }
-            Spacer(modifier = Modifier.width(16.dp))
-            Button(onClick = { viewModel.dispatch(AppAction.Counter(CounterAction.Decrement)) }) {
+            Spacer(modifier = Modifier.width(8.dp))
+            Button(onClick = { store.dispatch(CounterAction.Decrement) }) {
                 Text("Decrement")
             }
         }
