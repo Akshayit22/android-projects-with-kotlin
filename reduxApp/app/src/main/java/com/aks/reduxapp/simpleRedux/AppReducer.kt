@@ -1,5 +1,6 @@
 package com.aks.reduxapp.simpleRedux
 
+/*
 data class AppState(
     val counterState: CounterState = CounterState()
 )
@@ -17,3 +18,4 @@ fun appReducer(state: AppState, action: AppAction): AppState {
         }
     }
 }
+ */

@@ -2,7 +2,6 @@ package com.aks.reduxapp.simpleRedux
 
 import org.reduxkotlin.Middleware
 import org.reduxkotlin.Reducer
-import org.reduxkotlin.createThreadSafeStore
 
 /*
 fun counterReducer(state:CounterState, action:CounterAction):CounterState{

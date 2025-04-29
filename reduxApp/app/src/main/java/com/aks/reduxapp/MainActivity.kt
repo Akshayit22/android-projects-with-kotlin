@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
+import com.aks.reduxapp.kotlinRedux.screens.AuthCounter
 import com.aks.reduxapp.simpleRedux.CounterScreen
 import com.aks.reduxapp.ui.theme.ReduxAppTheme
 
@@ -35,7 +36,8 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(WindowInsets.safeDrawing.asPaddingValues()) // respect status bar
                     ) {
-                        CounterScreen()
+//                        CounterScreen()
+                        AuthCounter()
                     }
                 }
             }
