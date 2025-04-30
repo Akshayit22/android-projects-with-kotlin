@@ -1,7 +1,12 @@
 package com.aks.reduxapp.simpleRedux
 
+import com.aks.reduxapp.kotlinRedux.AppState
+import okhttp3.Dispatcher
 import org.reduxkotlin.Middleware
 import org.reduxkotlin.Reducer
+import org.reduxkotlin.Thunk
+import org.reduxkotlin.ThunkMiddleware
+import org.reduxkotlin.middleware
 
 /*
 fun counterReducer(state:CounterState, action:CounterAction):CounterState{
@@ -21,12 +26,25 @@ val counterReducer: Reducer<CounterState> = { state, action ->
 }
 
 
-val loggerMiddleware: Middleware<CounterState> = { store ->
-    {next ->
-        { action ->
-            println("New State: ${store.state}")
-            next(action)
-            println("New State: ${store.state}")
+val loggerMiddleware = middleware<CounterState> { store, next, action ->
+    val result = next(action)
+    println("next state: ${store.state}")
+    result
+}
+
+
+fun createThunkMiddleware(): ThunkMiddleware<CounterState> =
+    { store ->
+        { next ->
+            { action ->
+                println("next Thunk: ${store.state}")
+                if (action is Function<*>) {
+                    @Suppress("UNCHECKED_CAST")
+                    val thunk = action as Thunk<CounterState>
+                    thunk(store.dispatch, store.getState, null)
+                } else {
+                    next(action)
+                }
+            }
         }
     }
-}

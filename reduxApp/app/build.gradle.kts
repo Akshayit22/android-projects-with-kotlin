@@ -59,6 +59,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation("org.reduxkotlin:redux-kotlin-threadsafe-jvm:0.5.5")
+    implementation("org.reduxkotlin:redux-kotlin-thunk:0.5.5")
 
     implementation ("com.squareup.retrofit2:retrofit:2.9.0")
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")

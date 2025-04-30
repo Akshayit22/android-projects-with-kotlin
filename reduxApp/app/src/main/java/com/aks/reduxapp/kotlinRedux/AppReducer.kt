@@ -2,7 +2,6 @@ package com.aks.reduxapp.kotlinRedux
 
 import com.aks.reduxapp.kotlinRedux.auth.authReducer
 import com.aks.reduxapp.kotlinRedux.counter.counterReducer
-import com.aks.reduxapp.simpleRedux.CounterState
 import org.reduxkotlin.Middleware
 import org.reduxkotlin.Reducer
 

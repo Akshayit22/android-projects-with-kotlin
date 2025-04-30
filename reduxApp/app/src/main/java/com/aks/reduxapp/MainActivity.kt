@@ -36,8 +36,8 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(WindowInsets.safeDrawing.asPaddingValues()) // respect status bar
                     ) {
-//                        CounterScreen()
-                        AuthCounter()
+                        CounterScreen()
+                        //AuthCounter()
                     }
                 }
             }

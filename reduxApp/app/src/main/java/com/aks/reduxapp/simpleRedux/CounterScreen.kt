@@ -19,11 +19,12 @@ import androidx.compose.ui.unit.sp
 import org.reduxkotlin.applyMiddleware
 import org.reduxkotlin.createThreadSafeStore
 
+
 object StoreHolder {
     val store = createThreadSafeStore(
         reducer = counterReducer,
         preloadedState = CounterState(),
-        enhancer = applyMiddleware(loggerMiddleware)
+        enhancer = applyMiddleware(createThunkMiddleware(), loggerMiddleware)
     )
 }
 
