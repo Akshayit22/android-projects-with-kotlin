@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    kotlin("plugin.serialization") version "1.9.10"
 }
 
 android {
@@ -65,5 +66,22 @@ dependencies {
     implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
     dependencies {
         implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1") // Use the latest stable version
+    }
+
+//    val ktor_version = "3.1.2"
+//    dependencies {
+//        implementation("io.ktor:ktor-client-core:$ktor_version")
+//        implementation("io.ktor:ktor-client-cio:$ktor_version")
+//    }
+
+    val ktorVersion = "2.3.7"
+    val serializationVersion = "1.6.0"
+
+    dependencies {
+        implementation("io.ktor:ktor-client-core:$ktorVersion")
+        implementation("io.ktor:ktor-client-cio:$ktorVersion")
+        implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+        implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+        implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
     }
 }
