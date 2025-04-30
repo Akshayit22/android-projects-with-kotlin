@@ -16,9 +16,21 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import org.reduxkotlin.Thunk
 import org.reduxkotlin.applyMiddleware
 import org.reduxkotlin.createThreadSafeStore
 
+fun incrementAsync(): Thunk<CounterState> = { dispatch, getState, _ ->
+    CoroutineScope(Dispatchers.Main).launch {
+        delay(1000)
+        println("Thunk: Dispatching increment")
+        dispatch(CounterAction.Increment)
+    }
+}
 
 object StoreHolder {
     val store = createThreadSafeStore(
@@ -46,7 +58,7 @@ fun CounterScreen() {
     ) {
         Text("Count: ${state.count}", fontSize = 30.sp)
         Row {
-            Button(onClick = { store.dispatch(CounterAction.Increment) }) {
+            Button(onClick = { store.dispatch(incrementAsync()) }) {
                 Text("Increment")
             }
             Spacer(modifier = Modifier.width(8.dp))

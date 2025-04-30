@@ -42,6 +42,7 @@ fun createThunkMiddleware(): ThunkMiddleware<CounterState> =
                     @Suppress("UNCHECKED_CAST")
                     val thunk = action as Thunk<CounterState>
                     thunk(store.dispatch, store.getState, null)
+                    println("next stateT: ${store.state}")
                 } else {
                     next(action)
                 }
