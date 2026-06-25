@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 abstract class NotesDAO {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    abstract fun addNote(notesEntity: Notes)
+    abstract suspend fun addNote(notesEntity: Notes)
 
     @Query("Select * from `notes-table`")
-    abstract fun getAllNotes():Flow<List<Notes>>
+    abstract fun getAllNotes(): Flow<List<Notes>>
 
     @Update
     abstract suspend fun updateNote(notesEntity: Notes)
@@ -23,5 +23,5 @@ abstract class NotesDAO {
     abstract suspend fun deleteNote(notesEntity: Notes)
 
     @Query("Select * from `notes-table` where id=:id")
-    abstract fun getNoteById(id:Long):Flow<Notes>
+    abstract fun getNoteById(id: Long): Flow<Notes>
 }

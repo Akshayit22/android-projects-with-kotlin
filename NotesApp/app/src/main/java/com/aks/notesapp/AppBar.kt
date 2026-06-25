@@ -1,7 +1,10 @@
 package com.aks.notesapp
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
@@ -21,53 +24,53 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun AppBarView(
-    title:String,
-    OnBackNavClick: ()-> Unit = {}
-){
-    Surface(
-        shape = RoundedCornerShape(16.dp),
-        shadowElevation = 3.dp,
-        color = colorResource(R.color.app_bar_color),
-        modifier = Modifier.padding(horizontal = 8.dp)
-    ) {
+    title: String,
+    OnBackNavClick: () -> Unit = {}
+) {
+    Column(modifier = Modifier.fillMaxWidth()) {
+        // Transparent spacer that occupies exactly the status bar height.
+        // The gray Surface below it is drawn only in the AppBar area, not behind system icons.
+        Spacer(modifier = Modifier.statusBarsPadding())
 
-        val navigationIcon:(@Composable () -> Unit)? = {
-            if(!title.contains("Notes App")){
-                IconButton(
-                    onClick = {OnBackNavClick()}
-                ) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = null
-                    )
-                }
-            } else{
-                IconButton(
-                    onClick = {}
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.Home,
-                        tint = MaterialTheme.colorScheme.primary,
-                        contentDescription = null
-                    )
+        Surface(
+            shape = RoundedCornerShape(16.dp),
+            shadowElevation = 3.dp,
+            color = colorResource(R.color.app_bar_color),
+            modifier = Modifier.padding(horizontal = 8.dp)
+        ) {
+            val navigationIcon: (@Composable () -> Unit) = {
+                if (!title.contains("Notes App")) {
+                    IconButton(onClick = OnBackNavClick) {
+                        Icon(
+                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                            tint = MaterialTheme.colorScheme.primary,
+                            contentDescription = "Back"
+                        )
+                    }
+                } else {
+                    IconButton(onClick = {}) {
+                        Icon(
+                            imageVector = Icons.Default.Home,
+                            tint = MaterialTheme.colorScheme.primary,
+                            contentDescription = null
+                        )
+                    }
                 }
             }
 
+            TopAppBar(
+                title = {
+                    Text(
+                        text = title,
+                        color = colorResource(R.color.white),
+                        fontSize = 18.sp
+                    )
+                },
+                navigationIcon = navigationIcon,
+                backgroundColor = Color.Transparent,
+                elevation = 0.dp,
+                modifier = Modifier.fillMaxWidth()
+            )
         }
-
-        TopAppBar(
-            title = {
-                Text(
-                    text = title,
-                    color = colorResource(R.color.white),
-                    fontSize = 18.sp
-                )
-            },
-            navigationIcon = navigationIcon,
-            backgroundColor = Color.Transparent,
-            elevation = 0.dp,
-            modifier = Modifier.fillMaxWidth().padding(0.dp)
-        )
     }
 }

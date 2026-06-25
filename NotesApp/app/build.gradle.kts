@@ -42,6 +42,7 @@ android {
 
 dependencies {
 
+    implementation(libs.androidx.fragment.ktx)
     val nav_version = "2.7.5"
     val compose_version = "1.8.0"
     val room = "2.6.0"
@@ -50,6 +51,10 @@ dependencies {
     implementation("androidx.room:room-runtime:$room")
     implementation("androidx.room:room-ktx:$room")
     kapt("androidx.room:room-compiler:$room")
+
+    // Biometric
+    implementation("androidx.biometric:biometric:1.1.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("androidx.compose.ui:ui:$compose_version")
