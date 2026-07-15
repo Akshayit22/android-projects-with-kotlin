@@ -4,9 +4,6 @@ A collection of Android applications built with Kotlin, Jetpack Compose and Andr
 
 ## Apps
 
-### OffVault
-An offline-first, encrypted personal vault for storing login credentials, cards, documents and other sensitive notes. Features biometric authentication, encrypted local storage (Room + key management), and encrypted backup/restore. Organised into sections with dedicated screens for each data type. *(~5.5k LOC — most complex)*
-
 ### HotNews
 A news reader app that fetches top headlines and lets users search, read and bookmark articles. Uses a Redux-style architecture (actions, reducers, middleware), Retrofit for networking, Room for offline bookmark caching, bottom-navigation, and a settings screen for country/language preferences.
 
